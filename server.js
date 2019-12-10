@@ -27,17 +27,23 @@ app.use(express.static('website'));
 const port = 8000;
 const server = app.listen(port, () => { console.log(`server is running on localhost: ${port}`); });
 
-//GEt route
+//GET route
 app.get('/all', (req, res) => {
     res.send(projectData);
+    console.log(projectData);
 });
 
 //POST route
-app.post('/add', (req, res) => {
-    res.send('POST received');
-});
+app.post('/addWeather', addWeather);
 
-const data = []
-app.post('/animal', (req, res) => {
-    data.push(req.body);
-});
+function addWeather(req, res) {
+    newEntry = {
+        date: req.body.date,
+        temp: req.body.temp,
+        content: req.body.content
+    }
+
+    projectData.push(newEntry)
+    res.send(projectData)
+    console.log(projectData);
+};
