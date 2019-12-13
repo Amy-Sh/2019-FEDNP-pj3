@@ -37,13 +37,7 @@ app.get('/all', (req, res) => {
 app.post('/addWeather', addWeather);
 
 function addWeather(req, res) {
-    newEntry = {
-        date: req.body.date,
-        temp: req.body.main.temp,
-        content: req.body.content
-    }
-
-    projectData.push(newEntry)
+    console.log(req.body);
+    projectData = req.body
     res.send(projectData)
-    console.log(projectData);
 };
