@@ -10,8 +10,8 @@ let newDate = d.getMonth() + '.' + d.getDate() + '.' + d.getFullYear();
 document.getElementById('generate').addEventListener('click', performAction);
 
 function performAction(e) {
-    const newWeather = document.getElementById('zip').value;
-    const feelings = document.getElementById('feelings')
+    let newWeather = document.getElementById('zip').value;
+    let feelings = document.getElementById('feelings').value;
     getWeather(baseURL, newWeather, apiKey)
         .then(function(data) {
             //Add data to POST request

@@ -27,17 +27,16 @@ app.use(express.static('website'));
 const port = 8000;
 const server = app.listen(port, () => { console.log(`server is running on localhost: ${port}`); });
 
+//POST route
+app.post('/addWeather', addWeather);
+
+function addWeather(req, res) {
+    projectData = req.body
+    res.send(projectData)
+};
+
 //GET route
 app.get('/all', (req, res) => {
     res.send(projectData);
     console.log(projectData);
 });
-
-//POST route
-app.post('/addWeather', addWeather);
-
-function addWeather(req, res) {
-    console.log(req.body);
-    projectData = req.body
-    res.send(projectData)
-};
