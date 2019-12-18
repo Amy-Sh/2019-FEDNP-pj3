@@ -17,6 +17,8 @@ function performAction(e) {
             //Add data to POST request
             postData('/addWeather', { temp: data.main.temp, date: d, feeling: feelings });
         });
+    //update the screen
+    updateUI();
 };
 
 const getWeather = async(baseURL, zip, apiKey) => {
@@ -45,6 +47,20 @@ const postData = async(url = '', data = {}) => {
         const newData = await response.json();
         console.log(newData);
         return newData;
+    } catch (error) {
+        console.log("error", error);
+    }
+};
+
+//Update UI demo
+const updateUI = async() => {
+    const request = await fetch('/all')
+    console.log(request.body);
+    try {
+        const allData = await request.json()
+        document.getElementById('date').innerHTML = allData.date;
+        document.getElementById('temp').innerHTML = allData.temp;
+        document.getElementById('content').innerHTML = allData.feeling;
     } catch (error) {
         console.log("error", error);
     }
