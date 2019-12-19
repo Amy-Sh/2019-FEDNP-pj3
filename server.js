@@ -31,12 +31,14 @@ const server = app.listen(port, () => { console.log(`server is running on localh
 app.post('/addWeather', addWeather);
 
 function addWeather(req, res) {
+    console.log('addWeather is called');
     projectData = req.body
     res.send(projectData)
 };
 
 //GET route
 app.get('/all', (req, res) => {
+    console.log('get/all is called');
     res.send(projectData);
     console.log(projectData);
 });
