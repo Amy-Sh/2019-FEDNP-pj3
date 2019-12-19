@@ -10,15 +10,15 @@ let newDate = d.getMonth() + '.' + d.getDate() + '.' + d.getFullYear();
 document.getElementById('generate').addEventListener('click', performAction);
 
 function performAction(e) {
-    let newWeather = document.getElementById('zip').value;
+    let newZip = document.getElementById('zip').value;
     let feelings = document.getElementById('feelings').value;
-    getWeather(baseURL, newWeather, apiKey)
+    getWeather(baseURL, newZip, apiKey)
         .then(function(data) {
             //Add data to POST request
             postData('/addWeather', { temp: data.main.temp, date: d, feeling: feelings });
+            //change the UI
+            updateUI();
         });
-    //update the screen
-    updateUI();
 };
 
 const getWeather = async(baseURL, zip, apiKey) => {
@@ -55,7 +55,6 @@ const postData = async(url = '', data = {}) => {
 //Update UI demo
 const updateUI = async() => {
     const request = await fetch('/all')
-    console.log(request.body);
     try {
         const allData = await request.json()
         document.getElementById('date').innerHTML = allData.date;
